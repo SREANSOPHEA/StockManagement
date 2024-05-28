@@ -13,3 +13,4 @@ Route::get('/register', function () {
     return view('admin.register');
 });
 Route::post('/register-submit',[adminController::class,'register']);
+Route::post('/login-submit',[adminController::class,'login']);
