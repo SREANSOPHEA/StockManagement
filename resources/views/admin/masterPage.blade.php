@@ -138,12 +138,12 @@
           </a>
           <ul id="product_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="">
+              <a href="/admin/view-product">
                 <i class="bi bi-circle"></i><span>View Products</span>
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="/admin/add-product">
                 <i class="bi bi-circle"></i><span>Add Product</span>
               </a>
             </li>
