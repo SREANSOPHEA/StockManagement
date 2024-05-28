@@ -12,6 +12,9 @@
     <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -67,14 +70,14 @@
           </li>
           <li class="nav-item dropdown pe-3">
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"/>
-              <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span> 
+              <img src="{{asset('images/'.Auth::user()->profile)}}" alt="Profile" class="rounded-circle"/>
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span> 
             </a>
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
               <li class="dropdown-header">
-                <h6>Kevin Anderson</h6>
-                <span>Web Designer</span>
+                <h6>{{Auth::user()->name}}</h6>
+                {{-- <span>Web Designer</span> --}}
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -116,25 +119,32 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/admin">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+          <a class="nav-link" href="/admin/view-categories">
+            <i class="bi bi-grid"></i>
+            <span>Categories</span>
           </a>
-          <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#product_nav" data-bs-toggle="collapse" style="cursor: pointer">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Product</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="product_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="tables-general.html">
-                <i class="bi bi-circle"></i><span>General Tables</span>
+              <a href="">
+                <i class="bi bi-circle"></i><span>View Products</span>
               </a>
             </li>
             <li>
-              <a href="tables-data.html">
-                <i class="bi bi-circle"></i><span>Data Tables</span>
+              <a href="">
+                <i class="bi bi-circle"></i><span>Add Product</span>
               </a>
             </li>
           </ul>
@@ -162,5 +172,6 @@
     <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
   </body>
 </html>

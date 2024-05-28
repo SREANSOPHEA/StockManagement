@@ -14,7 +14,7 @@
     @if (session()->has('error'))
         <script>
             $(document).ready(function(){
-                swal('This user already exist!','Please try another name','warning');
+                swal('Account not found!!','Incorrect username or password','warning');
             })
         </script>
     @endif

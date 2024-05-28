@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,6 +32,23 @@ class adminController extends Controller
                 'profile'=>$profile
             ]);
         }
+        return redirect('/login');
+    }
+    public function login(Request $data){
+        $name = $data->name;
+        $password = $data->password;
+        if(Auth::attempt(['name'=>$name,'password'=>$password])){
+            return redirect('/admin');
+        }else{
+            return redirect('/login')->with('error','invalid');
+        }
+    }
+
+    public function dashboard(){
+        return view('admin.dashboard');
+    }
+    public function logout(){
+        Auth::logout();
         return redirect('/login');
     }
 }
