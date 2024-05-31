@@ -14,7 +14,7 @@
         <div class="m-3 text-end">
             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#AddCategoryModal">+ Add Category</button>
         </div>
-        <table class="w-100 table table-bordered table-dark table-hover text-center" style="table-layout: fixed">
+        <table class="w-100 table table-bordered table-light table-hover text-center" style="table-layout: fixed">
            <tr>
                 <th>ID</th>
                 <th>Name</th>

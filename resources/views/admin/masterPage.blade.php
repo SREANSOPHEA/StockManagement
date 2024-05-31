@@ -149,6 +149,13 @@
             </li>
           </ul>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/purchase">
+            <i class="bi bi-shop"></i>
+            <span>Purchase</span>
+          </a>
+        </li>
       </ul>
     </aside>
     <!-- End Sidebar-->

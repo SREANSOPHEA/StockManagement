@@ -11,7 +11,7 @@
                 </div>
             </form>
         </div>
-        <table class="w-100 table table-bordered table-dark table-hover text-center" style="table-layout: fixed">
+        <table class="w-100 table table-bordered table-light table-hover text-center" style="table-layout: fixed">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
