@@ -10,10 +10,10 @@ use function Laravel\Prompts\select;
 class productController extends Controller
 {
     public function viewProduct(Request $data){
-        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->paginate(5);
+        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->orderByDesc('product.id')->paginate(5);
       if(isset($data->search)){
         $search = $data->search;
-        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->where('product.name','like',"%$search%")->paginate(5);
+        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->where('product.name','like',"%$search%")->orderByDesc('product.id')->paginate(5);
       }
         return view('admin.viewProduct',['product'=>$product]);
     }
@@ -53,5 +53,14 @@ class productController extends Controller
         $product = DB::table('product')->find($id);
         $category = DB::table('category')->get();
         return view('admin.editProduct',['product'=>$product,'category'=>$category]);
+    }
+
+    public function purchase(){
+        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->get();
+        return view('admin.purchase',['product'=>$product]);
+    }
+
+    public function purchaseSubmit(Request $data){
+        return $data;
     }
 }
