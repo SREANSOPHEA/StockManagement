@@ -13,7 +13,7 @@
             <button class="btn btn-primary" type="submit"><i class="bi bi-cart"></i>Buy</button>
         </div>
         <div id="purchaseData" class="row gap-3 w-100">
-            <div class="col-3 align-items-center justify-content-center d-flex card" style="height: 200px" data-bs-toggle="modal" data-bs-target="#exampleModal"><h1>+</h1></div>
+            <div class="col-3 align-items-center justify-content-center d-flex card"  data-bs-toggle="modal" data-bs-target="#exampleModal"><h1>+</h1></div>
         </div>
     </form>
 

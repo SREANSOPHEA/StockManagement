@@ -42,6 +42,7 @@ function addPurchase(){
             if(check){
                 var old_qty = document.getElementById('qty'+id).value;
                 document.getElementById('qty'+id).value = parseFloat(old_qty)+parseFloat(qty);
+                document.getElementById('qty-'+id).innerHTML = "Qty: "+(parseFloat(old_qty)+parseFloat(qty));
             }else{
                 var div = document.createElement('div');
                 div.className = "card col-3 p-2";
@@ -49,27 +50,80 @@ function addPurchase(){
                 document.getElementById('purchaseData').appendChild(div);
         
                 var div = document.createElement('div');
-                div.className = "dropdown-menu";
+                div.className = "dropdown text-end";
                 div.id = "menu"+id;
-                document.getElementById('purchaseData').appendChild(div);
+                document.getElementById('purchase'+id).appendChild(div);
+
+                var div = document.createElement('div');
+                div.ariaExpanded = "false";
+                div.setAttribute('data-bs-toggle','dropdown');
+                div.innerHTML = "...";
+                document.getElementById('menu'+id).appendChild(div);
+
+                var ul = document.createElement('ul');
+                ul.className = "dropdown-menu dropdown-menu-end dropdown-menu-arrow";
+                ul.id = "ul-"+id;
+                document.getElementById('menu'+id).appendChild(ul);
+
+                var li = document.createElement('li');
+                li.id= "li-"+id;
+                document.getElementById('ul-'+id).appendChild(li);
+
+                var a = document.createElement('a');
+                a.className= "dropdown-item";
+                a.setAttribute('onclick','deletePurchase('+id+')');
+                a.innerHTML = "<i class='bi bi-trash-fill'></i>Delete";
+                document.getElementById('li-'+id).appendChild(a);
+
+                var input = document.createElement('input');
+                input.value = id;
+                input.name = "id[]";
+                input.type = "hidden";
+                document.getElementById('purchase'+id).appendChild(input);
 
                 var input = document.createElement('input');
                 input.value = name;
                 input.name = "name[]";
+                input.type = "hidden";
                 document.getElementById('purchase'+id).appendChild(input);
     
                 var input = document.createElement('input');
                 input.value = qty;
                 input.name = "qty[]";
                 input.id = "qty"+id;
+                input.type = "hidden";
                 document.getElementById('purchase'+id).appendChild(input);
     
                 var img = document.createElement('img');
                 img.src = "http://localhost:8000/images/"+image;
+                img.className = "w-50";
+                img.setAttribute('style','margin: auto');
                 document.getElementById('purchase'+id).appendChild(img);
+
+                var h5 = document.createElement('h5');
+                h5.innerHTML = "Name: "+name;
+                document.getElementById('purchase'+id).appendChild(h5);
+
+                var h5 = document.createElement('h5');
+                h5.innerHTML = "Price: "+price;
+                document.getElementById('purchase'+id).appendChild(h5);
+
+                var h5 = document.createElement('h5');
+                h5.innerHTML = "Qty: "+qty;
+                h5.id = 'qty-'+id;
+                document.getElementById('purchase'+id).appendChild(h5);
             }
         }
         document.getElementById('selectQty').value = "";
     }
     
+}
+
+function deletePurchase(id){
+    document.getElementById('purchase'+id).remove();
+}
+
+
+function addPurchaseItem(name,id){
+    alert(name);
 }

@@ -9,6 +9,15 @@ use function Laravel\Prompts\select;
 
 class productController extends Controller
 {
+    public function stock(Request $data){
+        $stock = DB::table('product')->join('stock','stock.productID','product.id')->join('category','product.categoryID','category.id')->select('stock.quantity as qty','product.*','category.name as category')->orderByDesc('product.id')->paginate(5);
+        if(isset($data->search)){
+            $search = $data->search;
+            $stock = DB::table('product')->join('stock','stock.productID','product.id')->join('category','product.categoryID','category.id')->select('stock.quantity as qty','product.*','category.name as category')->where('product.name','like',"%$search%")->orderByDesc('product.id')->paginate(5);
+        }
+        return view('admin.stock',['product'=>$stock]);
+    }
+
     public function viewProduct(Request $data){
         $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->orderByDesc('product.id')->paginate(5);
       if(isset($data->search)){
@@ -44,6 +53,12 @@ class productController extends Controller
                 'detail'=>$detail,
                 'image'=>$image
             ]);
+
+            $product = DB::table('product')->limit(1)->orderByDesc('id')->get();
+            DB::table('stock')->insert([
+                'productID'=>$product[0]->id,
+                'quantity'=>0
+            ]);
             return redirect('/admin/view-product');
         }
     }
@@ -58,6 +73,11 @@ class productController extends Controller
     public function purchase(){
         $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->get();
         return view('admin.purchase',['product'=>$product]);
+    }
+
+    public function purchase1(){
+        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->get();
+        return view('admin.purchase1',['product'=>$product]);
     }
 
     public function purchaseSubmit(Request $data){

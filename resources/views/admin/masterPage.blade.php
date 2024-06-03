@@ -126,6 +126,13 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="/admin/stock">
+            <i class="bi bi-box-fill"></i>
+            <span>Stock</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="/admin/view-categories">
             <i class="bi bi-grid"></i>
             <span>Categories</span>

@@ -23,10 +23,12 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/admin/add-category',[categoryController::class,'addCategory']);
     Route::post('admin/edit-category',[categoryController::class,'editCategory']);
     Route::post('admin/delete-category',[categoryController::class,'deleteCategory']);
+    Route::get('admin/stock',[productController::class,'stock']);
     Route::get('admin/view-product',[productController::class,'viewProduct']);
     Route::get('admin/add-product',[productController::class,'addProduct']);
     Route::post('admin/addProductSubmit',[productController::class,'addProductSubmit']);
     Route::get('admin/edit-product',[productController::class,'editProduct']);
     Route::get('admin/purchase',[productController::class,'purchase']);
+    Route::get('admin/purchase1',[productController::class,'purchase1']);
     Route::post('/admin/purchase-submit',[productController::class,'purchaseSubmit']);
 });
