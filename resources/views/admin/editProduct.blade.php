@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>Image</th>
-                    <td><input type="file" id="imageInput" name="image" class="form-control border-2 border-dark"></td>
+                    <td><input type="file" onchange="changeImage()" id="imageInput" name="image" class="form-control border-2 border-dark"></td>
                 </tr>
                 <tr>
                     <th class="align-top">Detail</th>

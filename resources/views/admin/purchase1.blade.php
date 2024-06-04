@@ -15,6 +15,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
   </head>
 <style>
     .input-group button,.input-group input{
@@ -42,40 +43,27 @@
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
         <h4>Current Order</h4>
-        <div id="currentOrder w-100" style="overflow-y: auto;height:45vh">
-            @for ($i = 0; $i < 5; $i++)
-            <div class="row m-2">
-                <div class="col-6 bg-dark"><img src="{{asset('images/5725-chicken.webp')}}" class="w-100"></div>
-                <div class="col-6">
-                    <h5>Chicken</h5>
-                    <p>$300</p>
-                    <input type="hidden" name="name[]">
-                    <div class="input-group">
-                        <button>-</button>
-                        <input type="text" class="form-control" value="1" readonly>
-                        <button>+</button>
-                    </div>
-                </div>
-                
-            </div>
-            @endfor
+        <form action="/admin/purchase-submit" method="post">
+        <div id="currentOrder" style="overflow-y: auto;height:45vh">
+          
         </div>
         <div style="position: absolute;bottom:0;left:50%;transform:translateX(-50%);z-index: 1000" class="w-100 p-2">
             <div class="bg-dark w-100 rounded p-3">
                 <div class="row text-light">
                     <div class="col-6">Subtotal</div>
-                    <div class="col-6 text-end"><b>0$</b></div>
+                    <div class="col-6 text-end" id="subtotal"><b>0$</b></div>
                     <div class="col-6">Discount</div>
-                    <div class="col-6 text-end"><b>0%</b></div>
+                    <div class="col-6 text-end"id="discount"><b>0%</b></div>
                     <div class="col-6">Tax </div>
                     <div class="col-6 text-end"><b>5%</b></div>
                     <hr>
                     <div class="col-6"><h3>Total</h3></div>
-                    <div class="col-6 text-end"><h3><b>0$</b></h3></div>
+                    <div class="col-6 text-end"><h3 id="amount"><b>0$</b></h3></div>
                 </div>
             </div>
             <button class="btn btn-primary w-100 mt-2 mb-2"><i class="bi bi-cart"></i>Buy</button>
         </div>
+      </form>
     </aside>
     <!-- End Sidebar-->
 
@@ -85,7 +73,7 @@
       </div>
         <div class="row w-100">
             @foreach ($product as $item)
-                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer" onclick="addPurchaseItem('{{$item->name}}',{{$item->id}})">
+                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer" onclick="addPurchaseItem('{{$item->name}}',{{$item->id}},'{{$item->image}}',{{$item->price}})">
                     <div class="w-100 p-2 card">
                         <div class="w-100 bg-secondary p-3 text-center rounded" style="margin: auto">
                             <img src="{{asset('images/'.$item->image)}}" class="w-75">
@@ -107,7 +95,7 @@
     <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
-    <script src="{{asset('assets/js/script.js')}}"></script>
+    
   </body>
 </html>
 
