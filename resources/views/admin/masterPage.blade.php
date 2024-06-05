@@ -163,6 +163,24 @@
             <span>Purchase</span>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#invoic_nav" data-bs-toggle="collapse" style="cursor: pointer">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Invoice</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="invoic_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="/admin/purchase-invoice">
+                <i class="bi bi-circle"></i><span>Purchase Invoice</span>
+              </a>
+            </li>
+            <li>
+              <a href="/admin/sale-invoice">
+                <i class="bi bi-circle"></i><span>Sale Invoice</span>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </aside>
     <!-- End Sidebar-->

@@ -6,7 +6,7 @@ use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin.masterPage');
+    return view('user.master');
 });
 Route::get('/login', function () {
     return view('admin.login');
@@ -31,4 +31,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('admin/purchase',[productController::class,'purchase1']);
     Route::get('admin/purchase1',[productController::class,'purchase']);
     Route::post('/admin/purchase-submit',[productController::class,'purchaseSubmit']);
+    Route::get('/admin/purchase-invoice',[productController::class,'purchaseInvoice']);
+    Route::get('/admin/purchase-invoice/{id}',[productController::class,'purchaseInvoiceDetail']);
 });
