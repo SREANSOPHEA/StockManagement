@@ -44,12 +44,16 @@
     <aside id="sidebar" class="sidebar">
         <h4>Current Order</h4>
         <form action="/admin/purchase-submit" method="post">
+          @csrf
         <div id="currentOrder" style="overflow-y: auto;height:45vh">
           
         </div>
         <div style="position: absolute;bottom:0;left:50%;transform:translateX(-50%);z-index: 1000" class="w-100 p-2">
             <div class="bg-dark w-100 rounded p-3">
                 <div class="row text-light">
+                  <input type="hidden" name="subtotal" value="0">
+                  <input type="hidden" name="discount" value="0">
+                  <input type="hidden" name="amount" value="0">
                     <div class="col-6">Subtotal</div>
                     <div class="col-6 text-end" id="subtotal"><b>0$</b></div>
                     <div class="col-6">Discount</div>

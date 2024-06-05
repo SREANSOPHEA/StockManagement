@@ -81,6 +81,17 @@ class productController extends Controller
     }
 
     public function purchaseSubmit(Request $data){
-        return $data;
+        $subtotal = $data->subtotal;
+        $discount = $data->discount;
+        $amount = $data->amount;
+        if($subtotal == 0) return redirect('/admin/purchase');
+        $name = $data->name;
+        $id = $data->id;
+        $qty = $data->qty;
+        $price = $data->price;
+        for($i=0;$i<count($name);$i++){
+
+        }
+        // return $data;
     }
 }

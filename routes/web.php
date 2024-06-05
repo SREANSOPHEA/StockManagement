@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('admin/add-product',[productController::class,'addProduct']);
     Route::post('admin/addProductSubmit',[productController::class,'addProductSubmit']);
     Route::get('admin/edit-product',[productController::class,'editProduct']);
-    Route::get('admin/purchase',[productController::class,'purchase']);
-    Route::get('admin/purchase1',[productController::class,'purchase1']);
+    Route::get('admin/purchase',[productController::class,'purchase1']);
+    Route::get('admin/purchase1',[productController::class,'purchase']);
     Route::post('/admin/purchase-submit',[productController::class,'purchaseSubmit']);
 });

@@ -129,10 +129,12 @@ function itemProduct(id, name, price,qty,img) {
             <div class="col-6">
                 <h5>${name}</h5>
                 <p>$${price}</p>
+                <input type="hidden" name="id[]" value="${id}">
                 <input type="hidden" name="name[]" value="${name}">
+                <input type="hidden" name="price[]" value="${price}">
                 <div class="input-group">
                     <button type="button" onclick="decrement('${id}')">-</button>
-                    <input type="text" id="quantity-${id}" class="form-control" value="${qty}" readonly>
+                    <input type="text" name="qty[]" id="quantity-${id}" class="form-control" value="${qty}" readonly>
                     <button type="button" onclick="increment('${id}')">+</button>
                 </div>
             </div>    
@@ -197,12 +199,16 @@ function items(){
         let total = ProductPrice[i] * ProductQty[i];
         subtotal += total;
     }
+
     if(subtotal<5000) discount = 0;
     else if(subtotal <10000) discount = 10;
     else if(subtotal <15000) discount = 15;
     else if(subtotal <20000) discount = 20;
 
     amount = subtotal - ((subtotal*discount)/100) + (subtotal*0.05);
+    document.getElementsByName('subtotal')[0].value = subtotal;
+    document.getElementsByName('discount')[0].value = discount;
+    document.getElementsByName('amount')[0].value = amount;
     document.getElementById('subtotal').innerHTML = "<b>"+subtotal.toLocaleString()+"$</b?";
     document.getElementById('discount').innerHTML = "<b>"+discount+"%</b?";
     document.getElementById('amount').innerHTML = "<b>"+amount.toLocaleString()+"$</b?";
