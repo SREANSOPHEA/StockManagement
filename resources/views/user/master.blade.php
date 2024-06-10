@@ -11,9 +11,9 @@
     <div class="header">
         <ul>
             <li class="logo"><a href="/">Logo</a></li>
-            <li class="menu"><a href="/home">Home</a></li>
-            <li class="menu"><a href="/shop">Shop</a></li>
-            <li class="menu"><a href="/about-us">About us</a></li>
+            <li class="menu home"><a href="/">Home</a></li>
+            <li class="menu shop"><a href="/shop">Shop</a></li>
+            <li class="menu about"><a href="/about">About us</a></li>
         </ul>
     </div>
     @yield('content')

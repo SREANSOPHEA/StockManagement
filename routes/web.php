@@ -6,13 +6,19 @@ use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('user.master');
+    return view('user.home');
+});
+Route::get('/shop', function () {
+    return view('user.shop');
 });
 Route::get('/login', function () {
     return view('admin.login');
 })->name('login');
 Route::get('/register', function () {
     return view('admin.register');
+});
+Route::get('/about', function () {
+    return view('user.about');
 });
 Route::post('/register-submit',[adminController::class,'register']);
 Route::post('/login-submit',[adminController::class,'login']);
