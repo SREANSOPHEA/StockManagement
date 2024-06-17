@@ -3,14 +3,13 @@
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\userPageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('user.home');
 });
-Route::get('/shop', function () {
-    return view('user.shop');
-});
+Route::get('/shop',[userPageController::class,'shop']);
 Route::get('/login', function () {
     return view('admin.login');
 })->name('login');

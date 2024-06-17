@@ -199,7 +199,7 @@ function items(){
         let total = ProductPrice[i] * ProductQty[i];
         subtotal += total;
     }
-
+    document.getElementById('totalProduct').innerHTML = ProductNames.length;
     if(subtotal<5000) discount = 0;
     else if(subtotal <10000) discount = 10;
     else if(subtotal <15000) discount = 15;
@@ -218,4 +218,5 @@ function items(){
         }
         return item;
 }
+
 

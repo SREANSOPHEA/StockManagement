@@ -70,7 +70,7 @@
       </form>
     </aside>
     <!-- End Sidebar-->
-
+    <p id="totalProduct"></p>
     <main id="main" class="main">
       <div class="w-50 m-3 float-end">
         <input type="text" placeholder="🔍Search" class="form-control border-2 border-dark">
