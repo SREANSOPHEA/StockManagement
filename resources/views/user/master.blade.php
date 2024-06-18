@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Admin @yield('title')</title>
+    <title>@yield('title')</title>
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet"/>
@@ -35,6 +35,13 @@
           <li><a href="/shop">Shop</a></li>
           <li><a href="/about">About Us</a></li>
         </ul>
+      </nav>
+      <nav class="header-nav ms-auto">
+        @if (session('customerID'))
+          {{session('customerName')}}
+        @else
+          <a href="/user-login" class="btn btn-primary">Login</a>
+        @endif
       </nav>
     </header>
     <main style="margin-top: 60px">

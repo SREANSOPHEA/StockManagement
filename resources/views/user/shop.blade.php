@@ -16,7 +16,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
-
+  <style>
+    .input-group button,.input-group input{
+        text-align: center;
+        border: 2px solid black;
+    }
+    .input-group button{
+      width: 25%;
+    }
+</style>
   <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -36,11 +44,19 @@
           <li><a href="/about">About Us</a></li>
         </ul>
       </nav>
+      <nav class="header-nav ms-auto">
+        @if (session('customerID'))
+          {{session('customerName')}}
+        @else
+          <a href="/user-login" class="btn btn-primary">Login</a>
+        @endif
+      </nav>
     </header>
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
         <h4>Current Order</h4>
+        <form action="/shop-submit" method="post">
         <div id="currentOrder" style="overflow-y: auto;height:45vh">
           
         </div>
@@ -54,13 +70,17 @@
                 <div class="col-6 text-end" id="subtotal"><b>0$</b></div>
                 <div class="col-6">Discount</div>
                 <div class="col-6 text-end"id="discount"><b>0%</b></div>
+                <div class="col-6">Tax</div>
+                <div class="col-6 text-end"><b>5%</b></div>
                 <hr>
                 <div class="col-6"><h3>Total</h3></div>
                 <div class="col-6 text-end"><h3 id="amount"><b>0$</b></h3></div>
             </div>
         </div>
-        <button class="btn btn-primary w-100 mt-2 mb-2"><i class="bi bi-cart"></i>Buy</button>
-    </div>
+        <button class="btn btn-primary w-100 mt-2 mb-2" type="button"data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-cart"></i>Buy</button>
+      </div>
+      
+    </form>
     </aside>
     <!-- End Sidebar-->
 

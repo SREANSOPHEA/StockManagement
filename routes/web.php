@@ -19,6 +19,12 @@ Route::get('/register', function () {
 Route::get('/about', function () {
     return view('user.about');
 });
+Route::get('/user-login', function () {
+    return view('user.login');
+});
+Route::get('/user-register', function () {
+    return view('user.register');
+});
 Route::post('/register-submit',[adminController::class,'register']);
 Route::post('/login-submit',[adminController::class,'login']);
 Route::middleware(['auth'])->group(function(){
