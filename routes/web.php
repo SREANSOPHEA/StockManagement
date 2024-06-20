@@ -25,8 +25,12 @@ Route::get('/user-login', function () {
 Route::get('/user-register', function () {
     return view('user.register');
 });
+Route::get('/user-logout',[adminController::class,'userlogout']);
+Route::post('/shop-submit',[adminController::class,'shopSubmit']);
 Route::post('/register-submit',[adminController::class,'register']);
 Route::post('/login-submit',[adminController::class,'login']);
+Route::post('/userregister-submit',[adminController::class,'userregister']);
+Route::post('/userlogin-submit',[adminController::class,'userlogin']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin',[adminController::class,'dashboard']);
     Route::get('/admin/logout',[adminController::class,'logout']);

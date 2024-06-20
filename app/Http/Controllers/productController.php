@@ -73,12 +73,12 @@ class productController extends Controller
     }
 
     public function purchase(){
-        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->get();
+        $product = DB::table('product')->join('category','product.categoryID','category.id')->join('stock','stock.productID','product.id')->select('product.*','category.name as category','stock.quantity as quantity')->get();
         return view('admin.purchase',['product'=>$product]);
     }
 
     public function purchase1(){
-        $product = DB::table('product')->join('category','product.categoryID','category.id')->select('product.*','category.name as category')->get();
+        $product = DB::table('product')->join('category','product.categoryID','category.id')->join('stock','stock.productID','product.id')->select('product.*','category.name as category','stock.quantity as quantity')->get();
         return view('admin.purchase1',['product'=>$product]);
     }
 

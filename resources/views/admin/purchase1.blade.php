@@ -77,7 +77,7 @@
       </div>
         <div class="row w-100">
             @foreach ($product as $item)
-                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer" onclick="addPurchaseItem('{{$item->name}}',{{$item->id}},'{{$item->image}}',{{$item->price}})">
+                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer" onclick="addPurchaseItem('{{$item->name}}',{{$item->id}},'{{$item->image}}',{{$item->price}},{{$item->quantity}},'purchase')">
                     <div class="w-100 p-2 card">
                         <div class="w-100 bg-secondary p-3 text-center rounded" style="margin: auto">
                             <img src="{{asset('images/'.$item->image)}}" class="w-75">

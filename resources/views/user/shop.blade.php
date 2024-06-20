@@ -46,7 +46,42 @@
       </nav>
       <nav class="header-nav ms-auto">
         @if (session('customerID'))
-          {{session('customerName')}}
+        <div class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="{{asset('images/'.session('customerProfile'))}}" alt="Profile" class="rounded-circle"/>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{session('customerName')}}</span> 
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{session('customerName')}}</h6>
+              {{-- <span>Web Designer</span> --}}
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/user-logout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         @else
           <a href="/user-login" class="btn btn-primary">Login</a>
         @endif
@@ -57,6 +92,7 @@
     <aside id="sidebar" class="sidebar">
         <h4>Current Order</h4>
         <form action="/shop-submit" method="post">
+          @csrf
         <div id="currentOrder" style="overflow-y: auto;height:45vh">
           
         </div>
@@ -77,7 +113,7 @@
                 <div class="col-6 text-end"><h3 id="amount"><b>0$</b></h3></div>
             </div>
         </div>
-        <button class="btn btn-primary w-100 mt-2 mb-2" type="button"data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-cart"></i>Buy</button>
+        <button class="btn btn-primary w-100 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-cart"></i>Buy</button>
       </div>
       
     </form>
@@ -104,16 +140,30 @@
       <section class="section dashboard">
         <div class="row w-100">
             @foreach ($product as $item)
-                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer" onclick="addPurchaseItem('{{$item->name}}',{{$item->id}},'{{$item->image}}',{{$item->price}})">
-                    <div class="w-100 p-2 card">
-                        <div class="w-100 bg-secondary p-3 text-center rounded" style="margin: auto">
-                            <img src="{{asset('images/'.$item->image)}}" class="w-75">
-                        </div>
-                        <h4>{{$item->name}}</h4>
-                        <p>{{$item->detail}}</p>
-                        <p>$ {{$item->price}}</p>
-                    </div>
+              @if ($item->quantity  == 0)
+                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer">
+                  <div class="w-100 p-2 card" style="position: relative">
+                    <div class="bg-danger text-light p-2" style="position: absolute">Out of Stock</div>
+                      <div class="w-100 bg-secondary p-3 text-center rounded" style="margin: auto">
+                          <img src="{{asset('images/'.$item->image)}}" class="w-75">
+                      </div>
+                      <h4>{{$item->name}}</h4>
+                      <p>{{$item->detail}}</p>
+                      <p>$ {{$item->price}}</p>
+                  </div>
                 </div>
+              @else
+                <div class="col-md-3 col-sm-6 p-2" style="cursor: pointer" onclick="addPurchaseItem('{{$item->name}}',{{$item->id}},'{{$item->image}}',{{$item->price}},{{$item->quantity}},'sale')">
+                  <div class="w-100 p-2 card">
+                      <div class="w-100 bg-secondary p-3 text-center rounded" style="margin: auto">
+                          <img src="{{asset('images/'.$item->image)}}" class="w-75">
+                      </div>
+                      <h4>{{$item->name}}</h4>
+                      <p>{{$item->detail}}</p>
+                      <p>$ {{$item->price}}</p>
+                  </div>
+                </div>
+              @endif
             @endforeach
         </div>
       </section>

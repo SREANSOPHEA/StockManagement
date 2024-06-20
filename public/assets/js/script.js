@@ -153,6 +153,8 @@ function decrement(id){
                 ProductImages.splice(i,1);
                 ProductPrice.splice(i,1);
                 ProductQty.splice(i,1);
+                ProductStock.splice(i,1);
+                ProductStatus.splice(i,1);
             }
             document.getElementById('currentOrder').innerHTML = items();
         }
@@ -161,8 +163,14 @@ function decrement(id){
 function increment(id){
     for(i=0;i<ProductNames.length;i++){
         if(id == ProductID[i]){
-            ProductQty[i]++;
-            document.getElementById('currentOrder').innerHTML = items();
+            if(ProductStatus[i] == "sale" && ProductQty[i] < ProductStock[i]){
+                ProductQty[i]++;
+                document.getElementById('currentOrder').innerHTML = items();
+            }
+            if(ProductStatus[i] == "purchase"){
+                ProductQty[i]++;
+                document.getElementById('currentOrder').innerHTML = items();
+            }
         }
     }
 }
@@ -172,12 +180,20 @@ const ProductImages = [];
 const ProductID = [];
 const ProductQty = [];
 const ProductPrice = [];
-function addPurchaseItem(name, id, image ,price) {
+const ProductStock = [];
+const ProductStatus = [];
+function addPurchaseItem(name, id, image ,price,stock,status) {
     var index = ProductNames.length;
     for(i=0;i<ProductNames.length;i++){
         if(id == ProductID[i]){
-            ProductQty[i]++;
-            document.getElementById('currentOrder').innerHTML = items();
+            if(ProductStatus[i] == "sale" && ProductQty[i] < ProductStock[i]){
+                ProductQty[i]++;
+                document.getElementById('currentOrder').innerHTML = items();
+            }
+            if(ProductStatus[i] == "purchase"){
+                ProductQty[i]++;
+                document.getElementById('currentOrder').innerHTML = items();
+            }
             return;
         }
     }
@@ -187,7 +203,8 @@ function addPurchaseItem(name, id, image ,price) {
         ProductImages[index] = image;
         ProductQty[index] = 1;
         ProductPrice[index] = price;
-
+        ProductStock[index] = stock;
+        ProductStatus[index] = status;
     document.getElementById('currentOrder').innerHTML = items();
 }
 
