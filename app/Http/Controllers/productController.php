@@ -137,4 +137,27 @@ class productController extends Controller
         ->get();
         return view('admin.purchaseInvoiceDetail',['detail'=>$detail]);
     }
+
+    public function saleInvoice(){
+        $sale = DB::table('sale')
+        ->join('saledetail','saledetail.saleID','sale.id')
+        ->join('customer','customer.id','saledetail.admin')
+        ->select('sale.id', 'sale.date', 'customer.name', DB::raw('COUNT(saledetail.id) as product_count'))
+        ->groupBy('sale.id', 'sale.date', 'customer.name')
+        ->orderByDesc('sale.id')->paginate(5);
+        return view('admin.saleInvoice',['sale'=>$sale]);
+    }
+
+    public function saleInvoiceDetail($id){
+        // return Hash::make($id);
+        $detail = DB::table('saleDetail')
+        ->join('sale','sale.id','saledetail.saleID')
+        ->join('customer','customer.id','saledetail.admin')
+        ->join('product','product.id','saledetail.productID')
+        ->join('category','category.id','product.categoryID')
+        ->select('sale.id as ID','sale.*','saledetail.*','product.name as product','category.name as category','customer.name as customer')
+        ->where('sale.id',$id)
+        ->get();
+        return view('admin.saleInvoiceDetail',['detail'=>$detail]);
+    }
 }

@@ -47,7 +47,13 @@ class adminController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        $customer = DB::table('customer')->count();
+        $product = DB::table('product')->count();
+        $expense = DB::table('purchase')->select(DB::raw('sum(amount) as expense'))->first();
+        $revenue = DB::table('sale')->select(DB::raw('sum(amount) as revenue'))->first();
+        $chart = DB::table('purchase')->get();
+        $chart_sale = DB::table('sale')->get();
+        return view('admin.dashboard',['customer'=>$customer,'expense'=>$expense->expense,'revenue'=>$revenue->revenue,'product'=>$product,'chart'=>$chart,'chart_sale'=>$chart_sale]);
     }
     public function logout(){
         Auth::logout();
@@ -121,8 +127,10 @@ class adminController extends Controller
                     'quantity'=> $quantity
                 ]);
             }
+            return redirect('/shop')->with('success','Purchase Successful');
+        }else{
+            return redirect('/shop')->with('invalid','tv login sin pro');
         }
-            return redirect('/shop');
         }catch(Exception $e){
             return redirect('/shop');
         }
@@ -132,6 +140,7 @@ class adminController extends Controller
     public function userlogout(Request $data){
         Session::remove('customerID');
         Session::remove('customerName');
+        Session::remove('customerProfile');
 
         return redirect('/');
     }

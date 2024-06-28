@@ -48,4 +48,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/admin/purchase-submit',[productController::class,'purchaseSubmit']);
     Route::get('/admin/purchase-invoice',[productController::class,'purchaseInvoice']);
     Route::get('/admin/purchase-invoice/{id}',[productController::class,'purchaseInvoiceDetail']);
+    Route::get('/admin/sale-invoice',[productController::class,'saleInvoice']);
+    Route::get('/admin/sale-invoice/{id}',[productController::class,'saleInvoiceDetail']);
+    
 });

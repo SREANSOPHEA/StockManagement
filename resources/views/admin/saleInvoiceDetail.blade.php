@@ -34,7 +34,7 @@
 </style>
 <body class="m-0 p-0">
     <div class="p-3 d-flex w-100 align-items-center">
-        <div><a href="/admin/purchase-invoice"><img src="{{asset('images/beltei.png')}}" width="70px"></a></div>
+        <div><a href="/admin/sale-invoice"><img src="{{asset('images/beltei.png')}}" width="70px"></a></div>
         <div class="text-end w-100">
             <button class="btn btn-primary" onclick="print()">Print</button>
         </div>
@@ -45,8 +45,8 @@
     <div class="container">
         <div style="line-height: 0">
             <h3>Invoice: <b>#{{$detail[0]->ID}}</b></h3>
-            <p>Buyer: <b>{{$detail[0]->admin}}</b></p>
-            <p>Seller: <b>System</b></p>
+            <p>Buyer: <b>{{$detail[0]->customer}}</b></p>
+            <p>Seller: <b>Group1</b></p>
             <p>Date: <b>{{$detail[0]->date}}</b></p>
         </div>
         <table class="w-100 text-center align-middle" style="table-layout: fixed">

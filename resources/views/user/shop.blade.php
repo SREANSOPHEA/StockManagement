@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Admin @yield('title')</title>
+    <title>Shop</title>
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet"/>
@@ -81,10 +81,10 @@
               </a>
             </li>
           </ul>
+          @else
+            <a href="/user-login" class="btn btn-primary">Login</a>
+          @endif
         </div>
-        @else
-          <a href="/user-login" class="btn btn-primary">Login</a>
-        @endif
       </nav>
     </header>
 
@@ -119,7 +119,20 @@
     </form>
     </aside>
     <!-- End Sidebar-->
-
+    @if (session('success'))
+        <script>
+          $(document).ready(function(){
+            swal('Congratulation','Purchase Successful','success');
+          });
+        </script>
+    @endif
+    @if (session('invalid'))
+        <script>
+          $(document).ready(function(){
+            swal('Something went wrong','tv login sin pro','error');
+          });
+        </script>
+    @endif
     <main id="main" class="main">
         <div class="d-flex justify-content-center w-100">
             <div class="pagetitle searchbar">
