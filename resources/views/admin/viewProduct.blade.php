@@ -35,7 +35,7 @@
                           
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="/admin/edit-product?id={{$item->id}}"><i class="bi bi-pencil-square"></i>Edit</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash-fill"></i>Delete</a></li>
+                              <li><a class="dropdown-item" onclick="getID({{$item->id}})"><i class="bi bi-trash-fill"></i>Delete</a></li>
                             </ul>
                           </div>
                     </td>
@@ -43,5 +43,28 @@
             @endforeach
         </table>
         {{$product->links()}}
+    </div>
+    <!-- Modal -->
+    <button style="visibility: hidden" id="delete_btn_modal" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Alert!!</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p>Are you sure to delete this product? If You deletet this product, product in stock will be remove too.</p>
+            <form action="/admin/deleteProduct" method="post">
+                @csrf
+            <input type="hidden" id="removeID" name="id">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </div>
+        </div>
+        </div>
     </div>
 @endsection

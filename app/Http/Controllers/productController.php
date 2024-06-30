@@ -141,10 +141,11 @@ class productController extends Controller
     public function saleInvoice(){
         $sale = DB::table('sale')
         ->join('saledetail','saledetail.saleID','sale.id')
-        ->join('customer','customer.id','saledetail.admin')
+        ->join('customer','customer.id','saledetail.customerID')
         ->select('sale.id', 'sale.date', 'customer.name', DB::raw('COUNT(saledetail.id) as product_count'))
         ->groupBy('sale.id', 'sale.date', 'customer.name')
         ->orderByDesc('sale.id')->paginate(5);
+        // return $sale;
         return view('admin.saleInvoice',['sale'=>$sale]);
     }
 
@@ -159,5 +160,12 @@ class productController extends Controller
         ->where('sale.id',$id)
         ->get();
         return view('admin.saleInvoiceDetail',['detail'=>$detail]);
+    }
+
+    public function deleteProduct(Request $data){
+        $id = $data->id;
+        DB::table('product')->where('id',$id)->delete();
+        DB::table('stock')->where('id',$id)->delete();
+        return redirect('/admin/view-product');
     }
 }

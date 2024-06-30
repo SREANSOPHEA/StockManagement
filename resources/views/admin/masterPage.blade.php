@@ -12,7 +12,7 @@
     <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet"/>
-
+    @yield('link')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
@@ -79,11 +79,11 @@
                 <h6>{{Auth::user()->name}}</h6>
                 {{-- <span>Web Designer</span> --}}
               </li>
-              {{-- <li>
+              <li>
                 <hr class="dropdown-divider" />
               </li>
 
-              <li>
+              {{-- <li>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <i class="bi bi-person"></i>
                   <span>My Profile</span>
@@ -91,14 +91,14 @@
               </li>
               <li>
                 <hr class="dropdown-divider" />
-              </li>
+              </li> --}}
 
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <a class="dropdown-item d-flex align-items-center" href="/admin/accountSetting">
                   <i class="bi bi-gear"></i>
                   <span>Account Settings</span>
                 </a>
-              </li> --}}
+              </li>
               <li>
                 <hr class="dropdown-divider" />
               </li>

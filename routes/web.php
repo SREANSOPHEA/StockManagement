@@ -34,6 +34,7 @@ Route::post('/userlogin-submit',[adminController::class,'userlogin']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin',[adminController::class,'dashboard']);
     Route::get('/admin/logout',[adminController::class,'logout']);
+    Route::get('/admin/accountSetting',[adminController::class,'accountSetting']);
     Route::get('/admin/view-categories',[categoryController::class,'viewCategory']);
     Route::post('/admin/add-category',[categoryController::class,'addCategory']);
     Route::post('admin/edit-category',[categoryController::class,'editCategory']);
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('admin/add-product',[productController::class,'addProduct']);
     Route::post('admin/addProductSubmit',[productController::class,'addProductSubmit']);
     Route::get('admin/edit-product',[productController::class,'editProduct']);
+    Route::post('/admin/deleteProduct',[productController::class,'deleteProduct']);
     Route::get('admin/purchase',[productController::class,'purchase1']);
     Route::get('admin/purchase1',[productController::class,'purchase']);
     Route::post('/admin/purchase-submit',[productController::class,'purchaseSubmit']);

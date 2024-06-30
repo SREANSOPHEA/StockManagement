@@ -38,13 +38,13 @@
                 </div>
                 <div class="col-md-4 p-3">
                     <div class="w-75 rounded bg-light p-3" style="margin: auto">
-                        <img src="{{asset('images/sophea.jpg')}}" class="w-100">
+                        <img src="{{asset('images/sovannra.jpg')}}" class="w-100">
                         <h5><b>Mr. KIM Sovannara</b></h5>
                     </div>
                 </div>
                 <div class="col-md-4 p-3">
                     <div class="w-75 rounded bg-light p-3" style="margin: auto">
-                        <img src="{{asset('images/sophea.jpg')}}" class="w-100">
+                        <img src="{{asset('images/reach.png')}}" class="w-100">
                         <h5><b>Mr. KEO Sovannreach</b></h5>
                     </div>
                 </div>

@@ -68,7 +68,7 @@ class adminController extends Controller
         if($validate>0){
             return redirect('/user-register')->with('error','user exist');
         }else{
-            if($gender=='male') $profile = "male-user.png";
+            if($gender=='Male') $profile = "male-user.png";
             else $profile = "female-user.png";
             DB::table('customer')->insert([
                 'name'=>$name,
@@ -82,6 +82,7 @@ class adminController extends Controller
     }
 
     public function userlogin(Request $data){
+        // return $data;
         $name = $data->name;
         $password = $data->password;
         $check = DB::table('customer')->where([['name',$name],['password',$password]])->get();
@@ -96,6 +97,7 @@ class adminController extends Controller
     }
 
     public function shopSubmit(Request $data){
+        // return Session('customerID');
         $discount = $data->discount;
         $amount = $data->amount;
         $subtotal = $data->subtotal;
@@ -143,5 +145,9 @@ class adminController extends Controller
         Session::remove('customerProfile');
 
         return redirect('/');
+    }
+
+    public function accountSetting(){
+        return view('admin.accountSetting');
     }
 }
