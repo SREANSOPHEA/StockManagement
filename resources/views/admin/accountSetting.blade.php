@@ -11,9 +11,11 @@
             <h1 class="text-center"><b>{{Auth::user()->email}}</b></h1>
         </div>
         <hr style="height: 5px;background-color:black">
+        <a href="/admin/removeProfile" class="btn btn-danger">Remove Profile</a>
         <form action="/admin/changeProfile" method="post" enctype="multipart/form-data">
-            <input type="file" id="fileImg" style="visibility: hidden">
-            <button id="btn_save_img">submit</button>
+            @csrf
+            <input type="file" name="img" id="fileImg" style="visibility: hidden">
+            <button style="visibility: hidden" id="btn_save_img">submit</button>
         </form>
     </div>
     <script>

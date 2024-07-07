@@ -2,6 +2,13 @@
 @section('title','- View Product')
 @section('content_Title','View Product')
 @section('content')
+@if (session()->has('error'))
+<script>
+    $(document).ready(function(){
+        swal('Unable to delete this Product','Please Try another name','error');
+    })
+</script>
+@endif
     <div class="card p-3 w-100">
         <div class="w-100 d-flex justify-content-end m-2">
             <form action="/admin/view-product" method="get">

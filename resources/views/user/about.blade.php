@@ -6,8 +6,8 @@
     }
 </style>
 @section('content')
-    <div class="w-100 row pt-3 bg">
-        <div class="col-md-6 text-center text-light p-3">
+    <div class="w-100 row pt-3 bg text-dark">
+        <div class="col-md-6 text-center p-3">
             <div class="w-75" style="margin: auto">
                 <h3>Lecturer</h3>
                 <img src="{{asset('images/teacher.jpg')}}" class="w-75">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="col-12 text-center text-dark">
-            <h1 class="text-light"><b><i>Group Members</i></b></h1>
+            <h1 ><b><i>Group Members</i></b></h1>
             <div class="w-100 row text-center" style="margin: auto">
                 <div class="col-md-4 p-3">
                     <div class="w-75 rounded bg-light p-3" style="margin: auto">

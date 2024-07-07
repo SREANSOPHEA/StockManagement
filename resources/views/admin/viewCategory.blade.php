@@ -10,6 +10,13 @@
                 })
             </script>
         @endif
+        @if (session()->has('errorr'))
+            <script>
+                $(document).ready(function(){
+                    swal('Unable to delete this Category','Please Try another Category','warning');
+                })
+            </script>
+        @endif
 
         <div class="m-3 text-end">
             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#AddCategoryModal">+ Add Category</button>

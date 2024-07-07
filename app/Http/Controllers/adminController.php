@@ -150,4 +150,26 @@ class adminController extends Controller
     public function accountSetting(){
         return view('admin.accountSetting');
     }
+
+    public function changeProfile(Request $data){
+        $file = $data->file('img');
+        $profile = $this->uploadImage($file);
+        DB::table('users')->where('id',Auth::user()->id)->update([
+            'profile'=>$profile
+        ]);
+        return redirect('/admin/accountSetting');
+    }
+
+    public function removeProfile(){
+        $user = DB::table('users')->find(Auth::user()->id);
+        if($user->gender == "Male") $profile = "male-user.png";
+        else $profile = "female-user.png";
+
+        DB::table('users')->where('id',Auth::user()->id)->update([
+            'profile'=>$profile
+        ]);
+        return redirect('/admin/accountSetting');
+
+        
+    }
 }

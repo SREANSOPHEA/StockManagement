@@ -42,6 +42,9 @@ class categoryController extends Controller
 
     public function deleteCategory(Request $data){
         $id = $data->id;
+        $check = DB::table('product')->where('categoryID',$id)->count();
+        if($check > 0) return redirect('/admin/view-categories')->with('errorr','error');
+
         DB::table('category')->where('id',$id)->delete();
         return redirect('/admin/view-categories');
     }

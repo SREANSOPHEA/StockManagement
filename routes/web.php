@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin',[adminController::class,'dashboard']);
     Route::get('/admin/logout',[adminController::class,'logout']);
     Route::get('/admin/accountSetting',[adminController::class,'accountSetting']);
+    Route::get('/admin/removeProfile',[adminController::class,'removeProfile']);
+    Route::post('/admin/changeProfile',[adminController::class,'changeProfile']);
     Route::get('/admin/view-categories',[categoryController::class,'viewCategory']);
     Route::post('/admin/add-category',[categoryController::class,'addCategory']);
     Route::post('admin/edit-category',[categoryController::class,'editCategory']);

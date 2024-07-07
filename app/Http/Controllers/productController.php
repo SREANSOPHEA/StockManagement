@@ -153,7 +153,7 @@ class productController extends Controller
         // return Hash::make($id);
         $detail = DB::table('saleDetail')
         ->join('sale','sale.id','saledetail.saleID')
-        ->join('customer','customer.id','saledetail.admin')
+        ->join('customer','customer.id','saledetail.customerID')
         ->join('product','product.id','saledetail.productID')
         ->join('category','category.id','product.categoryID')
         ->select('sale.id as ID','sale.*','saledetail.*','product.name as product','category.name as category','customer.name as customer')
@@ -164,8 +164,13 @@ class productController extends Controller
 
     public function deleteProduct(Request $data){
         $id = $data->id;
-        DB::table('product')->where('id',$id)->delete();
-        DB::table('stock')->where('id',$id)->delete();
-        return redirect('/admin/view-product');
+        $stock = DB::table('stock')->find($id);
+        if($stock->quantity == 0 ){
+            DB::table('product')->where('id',$id)->delete();
+            DB::table('stock')->where('id',$id)->delete();
+            return redirect('/admin/view-product');
+        }else{
+            return redirect('/admin/view-product')->with('error','error');
+        }
     }
 }
